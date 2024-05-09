@@ -25,7 +25,7 @@ import Commands.Update;
 
 public class ObjectUpdater {
 
-    Client client = new Client("localhost", 2448, 5000, 5);
+    Client client = ApplicationClient.getClient();
 
     Long id = UpdateManager.id;
 

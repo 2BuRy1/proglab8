@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class Commands {
 
-    Client client = new Client("localhost", 2448, 5000, 5);
+    Client client = ApplicationClient.getClient();
 
     static Vector<SpaceMarine> marines;
 

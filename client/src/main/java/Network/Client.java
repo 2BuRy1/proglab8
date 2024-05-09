@@ -37,15 +37,17 @@ public class Client {
                 this.disconnect();
                 return response;
             } catch (IOException e) {
+//
+//                if (reconnectionAttempts >= maxReconnectionAttempts) {
+//                    break;
+//                }
+//                reconnectionAttempts++;
+//
+//                System.err.println("Повторная попытка через " + reconnectionTimeout / 1000 + " секунд");
+//                Thread.sleep(reconnectionTimeout);
+//                this.connect();
 
-                if (reconnectionAttempts >= maxReconnectionAttempts) {
-                    break;
-                }
-                reconnectionAttempts++;
-
-                System.err.println("Повторная попытка через " + reconnectionTimeout / 1000 + " секунд");
-                Thread.sleep(reconnectionTimeout);
-                this.connect();
+                return new Response(LoginError.LOGIN_ERROR);
             } catch (ClassNotFoundException e) {
                 System.err.println("Произошла ошибка при получении данных от сервера");
             }

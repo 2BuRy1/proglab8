@@ -38,6 +38,10 @@ public class Response implements Serializable {
         this.result = result;
     }
 
+    public Response(LoginError loginError) {
+        this.loginError = loginError;
+    }
+
     public LoginError getLoginError(){
         return this.loginError;
     }

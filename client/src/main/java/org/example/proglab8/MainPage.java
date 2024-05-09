@@ -56,6 +56,26 @@ public class MainPage {
 
         });
 
+        tables.setOnAction(actionEvent -> {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(MainPage.class.getResource("Table.fxml"));
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Parent root = fxmlLoader.getRoot();
+            Scene scene= new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.showAndWait();
+
+
+
+        });
+
 
     }
 

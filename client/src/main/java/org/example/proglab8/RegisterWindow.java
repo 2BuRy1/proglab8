@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 
 public class RegisterWindow {
-    Client client = new Client("localhost", 2448, 5000, 5);
+    Client client = ApplicationClient.getClient();
 
     public static User user;
 

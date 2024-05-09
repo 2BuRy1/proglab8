@@ -16,7 +16,7 @@ import Commands.*;
 public class RemoveManager {
 
     User user = MainPage.user;
-    Client client = new Client("localhost", 2448, 5000, 5);
+    Client client = ApplicationClient.getClient();
 
 
     @FXML
