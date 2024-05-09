@@ -1,5 +1,6 @@
 package org.example.proglab8;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -13,18 +14,31 @@ import Network.Request;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import Commands.*;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class TableManager {
     Client client = ApplicationClient.getClient();
 
-    Vector<SpaceMarine> marines = client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();
 
-    ObservableList<SpaceMarine> list = FXCollections.observableList(marines);
+
+    Vector<SpaceMarine> marines =client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();;
+
+
+     ObservableList<SpaceMarine> list = FXCollections.observableList(marines);
 
     @FXML
     private ResourceBundle resources;
@@ -64,8 +78,15 @@ public class TableManager {
     @FXML
     private TableView<SpaceMarine> table;
 
+    @FXML
+    private Button delete;
+
+    @FXML
+    private TextField Filter;
+
     public TableManager() throws InterruptedException {
     }
+
 
     @FXML
     void initialize() {
@@ -130,9 +151,103 @@ public class TableManager {
             table.refresh();
         });
 
-    }
+        table.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, event -> {
+            if(event.getClickCount() == 2) {
+                SpaceMarine spaceMarine = table.getSelectionModel().getSelectedItem();
+                if (spaceMarine != null) {
+                    UpdateManager.spaceMarine = spaceMarine;
+                    UpdateManager.id = spaceMarine.getId();
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(TableManager.class.getResource("ObjectUpdater.fxml"));
+                    try {
+                        fxmlLoader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Parent root = fxmlLoader.getRoot();
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.showAndWait();
+                    try {
+                            marines = client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();
+                            list = FXCollections.observableArrayList(marines);
+                            table.setItems(list);
+                            table.refresh();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
 
-    ;
+                        }
+                    }
+                }
+
+        });
+        table.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, event -> {
+
+        });
+        table.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, event -> {
+
+        });
+        delete.setOnAction(event -> {
+
+            SpaceMarine spaceMarine = table.getSelectionModel().getSelectedItem();
+            if (spaceMarine != null) {
+                try {
+                    client.sendRequest(new Request(new Remove(), spaceMarine.getId(), MainPage.user));
+                    Vector<SpaceMarine> updatedList = client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();
+                    list = FXCollections.observableArrayList(updatedList);
+                    table.getItems().clear();
+                    table.setItems(list);
+                    table.refresh();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        FilteredList<SpaceMarine> filteredList = new FilteredList<>(list, b -> true);
+        Filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(spaceMarine -> {
+
+                String Y = String.valueOf(spaceMarine.getY());
+                String X = String.valueOf(spaceMarine.getX());
+                String marinesCount = String.valueOf(spaceMarine.getMarinesCount());
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (spaceMarine.getId().toString().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getWeapon().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getCategoryAstartes().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getMeleeWeapon().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getChapter().getName().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (spaceMarine.getX().toString().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (Y.contains(lowerCaseFilter)) {
+                    return true;
+                } else if (marinesCount.contains(lowerCaseFilter)) {
+                    return true;
+                }
+                else if(spaceMarine.getHealth().toString().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+        SortedList<SpaceMarine> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedList);
+    }
 
 
     private void initializeTables(ObservableList<SpaceMarine> list) {
@@ -149,5 +264,7 @@ public class TableManager {
 
         table.setItems(list);
     }
+
+
 
 }

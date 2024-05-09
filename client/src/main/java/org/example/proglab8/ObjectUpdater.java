@@ -3,6 +3,7 @@ package org.example.proglab8;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import Enums.AstartesCategory;
 import Enums.MeleeWeapon;
@@ -17,11 +18,9 @@ import Network.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Commands.Update;
+import Commands.Marines;
 
 public class ObjectUpdater {
 
@@ -110,6 +109,9 @@ public class ObjectUpdater {
 
                 try {
                    var response = client.sendRequest(new Request(new Update(), spaceMarine, id, user));
+//                    Vector <SpaceMarine> marines = client.sendRequest(new Request(new Marines(), user)).getMarines();
+//                    TableManager.marines = marines;
+//                    TableManager.list = FXCollections.observableList(marines);
                     Response.setText(response.getResult());
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

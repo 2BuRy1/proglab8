@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -32,5 +33,6 @@
         </items>
       </SplitMenuButton>
       <TextField fx:id="Filter" layoutX="40.0" layoutY="2.0" promptText="Filter" />
+      <Button fx:id="delete" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" text="Delete" />
    </children>
 </AnchorPane>
