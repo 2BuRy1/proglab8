@@ -197,7 +197,6 @@ public class TableManager {
                     client.sendRequest(new Request(new Remove(), spaceMarine.getId(), MainPage.user));
                     Vector<SpaceMarine> updatedList = client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();
                     list = FXCollections.observableArrayList(updatedList);
-                    table.getItems().clear();
                     table.setItems(list);
                     table.refresh();
                 } catch (InterruptedException e) {
@@ -242,11 +241,13 @@ public class TableManager {
 
                 return false;
             });
+            SortedList<SpaceMarine> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(table.comparatorProperty());
+            table.setItems(sortedList);
+            table.refresh();
         });
 
-        SortedList<SpaceMarine> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(sortedList);
+
     }
 
 
