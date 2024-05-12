@@ -21,9 +21,13 @@ import javafx.stage.Stage;
 public class LoginWindow {
 
     Client client = ApplicationClient.getClient();
+
     public static User user;
 
-    private Locale locale;
+    private static Locale locale;
+
+    @FXML
+    private TextField Logintitle;
 
     @FXML
     private ResourceBundle resources;
@@ -117,37 +121,41 @@ public class LoginWindow {
 
        English.setOnAction(actionEvent -> {
            locale = new Locale("en", "EN");
-           resources = ResourceBundle.getBundle("org/example/proglab8/lang", locale);
-           //LoginButton.setText(resources.getString("Login_button"));
+           resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+           LoginButton.setText(resources.getString("Login_button"));
            PasswordField.setPromptText(resources.getString("Password_Field"));
            LoginField.setPromptText(resources.getString("Login_Field"));
            RegisterButton.setText(resources.getString("Register_Button"));
+           Logintitle.setText(resources.getString("Login_Title"));
        });
 
        Russian.setOnAction(actionEvent -> {
            locale = new Locale("ru", "RU");
-           resources = ResourceBundle.getBundle("org/example/proglab8/lang", locale);
-           //LoginButton.setText(resources.getString("Login_button"));
+           resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+           LoginButton.setText(resources.getString("Login_button"));
            PasswordField.setPromptText(resources.getString("Password_Field"));
            LoginField.setPromptText(resources.getString("Login_Field"));
            RegisterButton.setText(resources.getString("Register_Button"));
+           Logintitle.setText(resources.getString("Login_Title"));
        });
 
        Islandian.setOnAction(actionEvent -> {
            locale = new Locale("is", "IS");
-           resources = ResourceBundle.getBundle("org/example/proglab8/lang", locale);
-           //LoginButton.setText(resources.getString("Login_button"));
+           resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+           LoginButton.setText(resources.getString("Login_button"));
            PasswordField.setPromptText(resources.getString("Password_Field"));
            LoginField.setPromptText(resources.getString("Login_Field"));
            RegisterButton.setText(resources.getString("Register_Button"));
+           Logintitle.setText(resources.getString("Login_Title"));
        });
        Es.setOnAction(actionEvent -> {
            locale = new Locale("es" ,"ES");
-           resources = ResourceBundle.getBundle("org/example/proglab8/lang", locale);
-           //LoginButton.setText(resources.getString("Login_button"));
+           resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+           LoginButton.setText(resources.getString("Login_button"));
            PasswordField.setPromptText(resources.getString("Password_Field"));
            LoginField.setPromptText(resources.getString("Login_Field"));
            RegisterButton.setText(resources.getString("Register_Button"));
+           Logintitle.setText(resources.getString("Login_Title"));
        });
 
     }
@@ -160,9 +168,9 @@ public class LoginWindow {
         return answer;
     }
 
-    private void loadLang(String lang){
-        locale = new Locale(lang);
-        resources = ResourceBundle.getBundle("org/example/proglab8/lang", locale);
+
+    public static Locale getLocale() {
+        return locale;
     }
 
 

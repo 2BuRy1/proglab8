@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
-        fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.lang"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 250);
 
         stage.setScene(scene);

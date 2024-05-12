@@ -12,7 +12,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f3d0d7" height="90.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
       <Text layoutX="189.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="117.0" layoutY="39.0" style="-fx-background-color: #F0EBE3; -fx-border-radius: 20px;" text="%Login_Field">
+      <TextField fx:id="Logintitle" alignment="CENTER" editable="false" focusTraversable="false" layoutX="117.0" layoutY="39.0" style="-fx-background-color: #F0EBE3; -fx-border-radius: 20px;" text="%Login_Field">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>

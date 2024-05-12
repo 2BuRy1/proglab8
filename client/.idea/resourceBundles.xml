@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_ru.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_Islan.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_en.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_ru.properties" />
@@ -16,6 +18,18 @@
       <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_es.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_ru.properties" />
       <base-name>lang</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_es.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_ru.properties" />
+      <base-name>l</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/l_ru.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/org/example/proglab8/lang_is.properties" />
+      <base-name>l</base-name>
     </custom-resource-bundle>
   </component>
 </project>
