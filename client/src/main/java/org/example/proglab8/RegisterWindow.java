@@ -31,6 +31,18 @@ public class RegisterWindow {
     private URL location;
 
     @FXML
+    private Button English;
+
+    @FXML
+    private Button Islandian;
+
+    @FXML
+    private Button Lithuanian;
+
+    @FXML
+    private Button Russian;
+
+    @FXML
     private Button LoginButton;
 
     @FXML

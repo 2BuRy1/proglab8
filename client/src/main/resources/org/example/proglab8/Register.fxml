@@ -30,5 +30,9 @@
          </font>
       </Button>
       <PasswordField fx:id="PasswordField1" layoutX="126.0" layoutY="172.0" promptText="Пароль" />
+      <Button fx:id="Islandian" layoutX="360.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="Isl" />
+      <Button fx:id="Es" layoutX="360.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="Es" />
+      <Button fx:id="Russian" layoutX="360.0" layoutY="166.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="Ru" />
+      <Button fx:id="English" layoutX="360.0" layoutY="199.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="En" />
    </children>
 </AnchorPane>

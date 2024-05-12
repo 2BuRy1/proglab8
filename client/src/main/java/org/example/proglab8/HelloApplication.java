@@ -7,11 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.lang"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 250);
 
         stage.setScene(scene);
