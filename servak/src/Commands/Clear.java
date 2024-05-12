@@ -27,7 +27,7 @@ public class Clear extends Command implements Serializable {
     public Response execute(Request request, CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
         DataBaseManager dataBaseManager = new DataBaseManager();
-        List<Long> ids = collectionManager.getMarines().stream().
+        List<Long> ids = collectionManager.AllMarines().stream().
                 filter(spaceMarine -> spaceMarine.getUserLogin().equals(request.getUser().getLogin())).map(SpaceMarine::getId).toList();
         if(dataBaseManager.deleteUserObjects(request.getUser() ,ids)) {
             collectionManager.removeElements(ids);

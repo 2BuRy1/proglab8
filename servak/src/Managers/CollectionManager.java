@@ -26,7 +26,7 @@ public class CollectionManager {
     }
 
 
-    public Vector<SpaceMarine> getMarines() {
+    public Vector<SpaceMarine> AllMarines() {
         return this.marines;
     }
 
@@ -141,6 +141,9 @@ public class CollectionManager {
      * @param id id, вводимый пользователем
      * @return объект, id которого равен введенному
      */
+
+
+
 
 
 

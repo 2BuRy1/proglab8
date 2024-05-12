@@ -42,8 +42,8 @@ public class LoginWindow {
 
     @FXML
     void initialize() {
-
-
+        resources= ResourceBundle.getBundle("localization/localization");
+        LoginField.setPrefColumnCount(resources.get);
        LoginButton.setOnAction(actionEvent -> {
            String login = LoginField.getText();
            String password = PasswordField.getText();

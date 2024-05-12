@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 public class MainPage {
   public static User user = RegisterStatus.isLoggin == false ? RegisterWindow.user : LoginWindow.user;
 
+  public static boolean flag = true;
+
     @FXML
     private ResourceBundle resources;
 
@@ -36,7 +38,8 @@ public class MainPage {
         UserField.setText(user.getLogin());
         MenuItem commands = new MenuItem("Commands");
         MenuItem tables = new MenuItem("Tables");
-        Menu.getItems().addAll(commands, tables);
+        MenuItem canvas = new MenuItem("Canvas");
+        Menu.getItems().addAll(commands, tables, canvas);
 
         commands.setOnAction(actionEvent -> {
 
@@ -75,6 +78,28 @@ public class MainPage {
 
 
         });
+
+        canvas.setOnAction(actionEvent -> {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(MainPage.class.getResource("ObjectVisualizer.fxml"));
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Parent parent = fxmlLoader.getRoot();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            if(!stage.isShowing()){
+                stage.close();
+                flag=false;
+            }
+        });
+
 
 
     }
