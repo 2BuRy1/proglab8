@@ -40,8 +40,10 @@ public class Server implements Runnable{
         this.port = port;
         this.dataBaseManager = dataBaseManager;
         this.collectionManager = collectionManager;
-    }@Override
+    }
 
+
+    @Override
     public void run()  {
         openServerSocket();
         serverLogger.info("Создано соединение с клиентом");
@@ -75,19 +77,11 @@ public class Server implements Runnable{
 
         try(ObjectInputStream reader = new ObjectInputStream(clientSocket.socket().getInputStream()); ObjectOutputStream writer= new ObjectOutputStream(clientSocket.socket().getOutputStream())) {
 
-           new Thread(() -> {
-               try {
-                   readRequst(reader);
-               } catch (ExecutionException e) {
-                   throw new RuntimeException(e);
-               } catch (InterruptedException e) {
-                   throw new RuntimeException(e);
-               }
-           }).run();
 
+            cachedThreadPool.submit(() -> readRequest(reader)).get();
              serverLogger.info("Получено сообщение от клиента " + request.getUser().getLogin() + ": " + request.getCommand().getName());
            forkJoinPool.submit(() -> commandExecution(request)).get();
-sendResponse(response, writer);
+            cachedThreadPool.submit(() -> sendResponse(response, writer)).get();
                serverLogger.info("Отправлено сообщение клиенту " + request.getUser().getLogin() + ": " + response.getResult());
 
             } catch (IOException | InterruptedException | ExecutionException e) {
@@ -100,7 +94,7 @@ sendResponse(response, writer);
                 }
             }
         }
-    private synchronized void readRequst(ObjectInputStream objectInputStream) throws ExecutionException, InterruptedException {
+    private synchronized void readRequest(ObjectInputStream objectInputStream) {
         try {
             request = (Request) objectInputStream.readObject();
         } catch (IOException e) {
