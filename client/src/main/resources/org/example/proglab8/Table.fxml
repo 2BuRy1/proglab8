@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -26,13 +24,7 @@
             <TableColumn fx:id="MarinesCount" prefWidth="70.0" text="Count" />
          </columns>
       </TableView>
-      <SplitMenuButton layoutX="468.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Value">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </SplitMenuButton>
-      <TextField fx:id="Filter" layoutX="40.0" layoutY="2.0" promptText="Filter" />
-      <Button fx:id="delete" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" text="Delete" />
+      <TextField fx:id="Filter" layoutX="40.0" layoutY="2.0" promptText="%Filter" />
+      <Button fx:id="delete" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" text="%Delete_Row" />
    </children>
 </AnchorPane>

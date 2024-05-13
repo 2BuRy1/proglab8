@@ -24,7 +24,7 @@ public class LoginWindow {
 
     public static User user;
 
-    private static Locale locale;
+    static Locale locale;
 
     @FXML
     private TextField Logintitle;
@@ -76,6 +76,7 @@ public class LoginWindow {
                        LoginButton.getScene().getWindow().hide();
                        FXMLLoader fxmlLoader = new FXMLLoader();
                        fxmlLoader.setLocation(LoginWindow.class.getResource("Main.fxml"));
+                       fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l"));
                        try {
                            fxmlLoader.load();
                        } catch (IOException e) {
@@ -170,9 +171,6 @@ public class LoginWindow {
     }
 
 
-    public static Locale getLocale() {
-        return locale;
-    }
 
 
 }

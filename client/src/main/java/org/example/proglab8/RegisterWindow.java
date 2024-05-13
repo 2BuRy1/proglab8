@@ -24,7 +24,7 @@ public class RegisterWindow {
     Client client = ApplicationClient.getClient();
 
 
-    private Locale locale;
+    static Locale locale;
 
     public static User user;
 
@@ -54,7 +54,7 @@ public class RegisterWindow {
 
 
     @FXML
-    private TextField Logintitle;
+    private TextField RegisterTitle;
 
     @FXML
     private PasswordField PasswordField1;
@@ -92,6 +92,7 @@ public class RegisterWindow {
                         RegisterButton.getScene().getWindow().hide();
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(LoginWindow.class.getResource("Main.fxml"));
+                        fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l"));
                         try {
                             fxmlLoader.load();
                         } catch (IOException e) {
@@ -116,6 +117,7 @@ public class RegisterWindow {
             LoginButton.getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(LoginWindow.class.getResource("Login.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l"));
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
@@ -139,7 +141,7 @@ public class RegisterWindow {
             PasswordField2.setPromptText(resources.getString("Password_Field"));
             LoginField.setPromptText(resources.getString("Login_Field"));
             RegisterButton.setText(resources.getString("Register_Button"));
-            Logintitle.setText(resources.getString("Login_Title"));
+            RegisterTitle.setText(resources.getString("Register_Title"));
         });
 
         Russian.setOnAction(actionEvent -> {
@@ -150,7 +152,7 @@ public class RegisterWindow {
             PasswordField2.setPromptText(resources.getString("Password_Field"));
             LoginField.setPromptText(resources.getString("Login_Field"));
             RegisterButton.setText(resources.getString("Register_Button"));
-            Logintitle.setText(resources.getString("Login_Title"));
+            RegisterTitle.setText(resources.getString("Register_Title"));
         });
 
         Islandian.setOnAction(actionEvent -> {
@@ -161,7 +163,7 @@ public class RegisterWindow {
             PasswordField2.setPromptText(resources.getString("Password_Field"));
             LoginField.setPromptText(resources.getString("Login_Field"));
             RegisterButton.setText(resources.getString("Register_Button"));
-            Logintitle.setText(resources.getString("Login_Title"));
+            RegisterTitle.setText(resources.getString("Register_Title"));
         });
         Es.setOnAction(actionEvent -> {
             locale = new Locale("es", "ES");
@@ -171,7 +173,7 @@ public class RegisterWindow {
             PasswordField2.setPromptText(resources.getString("Password_Field"));
             LoginField.setPromptText(resources.getString("Login_Field"));
             RegisterButton.setText(resources.getString("Register_Button"));
-            Logintitle.setText(resources.getString("Login_Title"));
+            RegisterTitle.setText(resources.getString("Register_Title"));
         });
 
 

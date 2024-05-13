@@ -2,6 +2,7 @@ package org.example.proglab8;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -33,7 +34,7 @@ import javafx.stage.Stage;
 public class TableManager {
     Client client = ApplicationClient.getClient();
 
-
+    Locale locale = MainPage.locale;
 
     Vector<SpaceMarine> marines =client.sendRequest(new Request(new Marines(), MainPage.user)).getMarines();;
 
@@ -90,6 +91,12 @@ public class TableManager {
 
     @FXML
     void initialize() {
+
+    Filter.setPromptText(resources.getString("Filter"));
+    delete.setText(resources.getString("Delete_Row"));
+
+
+
         initializeTables(list);
         Id.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, event -> {
             list.stream().filter(spaceMarine1 -> spaceMarine1.getId() < spaceMarine1.getId()).collect(Vector<SpaceMarine>::new, Vector<SpaceMarine>::add, Vector<SpaceMarine>::addAll);

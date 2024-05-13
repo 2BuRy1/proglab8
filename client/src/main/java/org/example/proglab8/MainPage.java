@@ -3,6 +3,7 @@ package org.example.proglab8;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import Managers.RegisterStatus;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 
 public class MainPage {
   public static User user = RegisterStatus.isLoggin == false ? RegisterWindow.user : LoginWindow.user;
+
+  static Locale locale = RegisterStatus.isLoggin == false ? RegisterWindow.locale : LoginWindow.locale;
 
   public static boolean flag = true;
 
@@ -35,16 +38,20 @@ public class MainPage {
 
     @FXML
     void initialize() {
+        resources = ResourceBundle.getBundle("org.example.proglab8.l", locale);
+
         UserField.setText(user.getLogin());
-        MenuItem commands = new MenuItem("Commands");
-        MenuItem tables = new MenuItem("Tables");
-        MenuItem canvas = new MenuItem("Canvas");
+        MenuItem commands = new MenuItem(resources.getString("Command_Section"));
+        MenuItem tables = new MenuItem(resources.getString("Table_Section"));
+        MenuItem canvas = new MenuItem(resources.getString("Canvas_Section"));
+        Menu.setText(resources.getString("Menu"));
         Menu.getItems().addAll(commands, tables, canvas);
 
         commands.setOnAction(actionEvent -> {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(MainPage.class.getResource("Commands.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l", locale));
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
@@ -63,6 +70,7 @@ public class MainPage {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(MainPage.class.getResource("Table.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l", locale));
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
@@ -83,6 +91,7 @@ public class MainPage {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(MainPage.class.getResource("ObjectVisualizer.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l", locale));
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
