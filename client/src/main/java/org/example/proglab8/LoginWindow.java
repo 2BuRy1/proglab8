@@ -104,6 +104,7 @@ public class LoginWindow {
            RegisterButton.getScene().getWindow().hide();
            FXMLLoader fxmlLoader = new FXMLLoader();
            fxmlLoader.setLocation(LoginWindow.class.getResource("Register.fxml"));
+           fxmlLoader.setResources(ResourceBundle.getBundle("org.example.proglab8.l"));
            try {
                fxmlLoader.load();
            } catch (IOException e) {

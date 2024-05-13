@@ -2,6 +2,7 @@ package org.example.proglab8;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import Commands.Login;
@@ -22,6 +23,9 @@ import javafx.stage.Stage;
 public class RegisterWindow {
     Client client = ApplicationClient.getClient();
 
+
+    private Locale locale;
+
     public static User user;
 
     @FXML
@@ -37,7 +41,7 @@ public class RegisterWindow {
     private Button Islandian;
 
     @FXML
-    private Button Lithuanian;
+    private Button Es;
 
     @FXML
     private Button Russian;
@@ -47,6 +51,10 @@ public class RegisterWindow {
 
     @FXML
     private TextField LoginField;
+
+
+    @FXML
+    private TextField Logintitle;
 
     @FXML
     private PasswordField PasswordField1;
@@ -90,18 +98,18 @@ public class RegisterWindow {
                             throw new RuntimeException(e);
                         }
                         Parent root = fxmlLoader.getRoot();
-                        Scene scene= new Scene(root);
+                        Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
 
                     }
-                    } catch (InterruptedException e) {
+                } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
-            });
+        });
 
 
         LoginButton.setOnAction(actionEvent1 -> {
@@ -122,15 +130,56 @@ public class RegisterWindow {
 
 
         });
+
+        English.setOnAction(actionEvent -> {
+            locale = new Locale("en", "EN");
+            resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+            LoginButton.setText(resources.getString("Login_button"));
+            PasswordField1.setPromptText(resources.getString("Password_Field"));
+            PasswordField2.setPromptText(resources.getString("Password_Field"));
+            LoginField.setPromptText(resources.getString("Login_Field"));
+            RegisterButton.setText(resources.getString("Register_Button"));
+            Logintitle.setText(resources.getString("Login_Title"));
+        });
+
+        Russian.setOnAction(actionEvent -> {
+            locale = new Locale("ru", "RU");
+            resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+            LoginButton.setText(resources.getString("Login_button"));
+            PasswordField1.setPromptText(resources.getString("Password_Field"));
+            PasswordField2.setPromptText(resources.getString("Password_Field"));
+            LoginField.setPromptText(resources.getString("Login_Field"));
+            RegisterButton.setText(resources.getString("Register_Button"));
+            Logintitle.setText(resources.getString("Login_Title"));
+        });
+
+        Islandian.setOnAction(actionEvent -> {
+            locale = new Locale("is", "IS");
+            resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+            LoginButton.setText(resources.getString("Login_button"));
+            PasswordField1.setPromptText(resources.getString("Password_Field"));
+            PasswordField2.setPromptText(resources.getString("Password_Field"));
+            LoginField.setPromptText(resources.getString("Login_Field"));
+            RegisterButton.setText(resources.getString("Register_Button"));
+            Logintitle.setText(resources.getString("Login_Title"));
+        });
+        Es.setOnAction(actionEvent -> {
+            locale = new Locale("es", "ES");
+            resources = ResourceBundle.getBundle("org/example/proglab8/l", locale);
+            LoginButton.setText(resources.getString("Login_button"));
+            PasswordField1.setPromptText(resources.getString("Password_Field"));
+            PasswordField2.setPromptText(resources.getString("Password_Field"));
+            LoginField.setPromptText(resources.getString("Login_Field"));
+            RegisterButton.setText(resources.getString("Register_Button"));
+            Logintitle.setText(resources.getString("Login_Title"));
+        });
+
+
     }
 
 
-
-
-
-
     private Response register(String login, String password) throws InterruptedException {
-        user = new User(login , password);
+        user = new User(login, password);
         var answer = client.sendRequest(new Request(new Register(), user));
         return answer;
     }
