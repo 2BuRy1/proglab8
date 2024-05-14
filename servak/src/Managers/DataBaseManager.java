@@ -12,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 public class DataBaseManager {
@@ -19,11 +20,13 @@ public class DataBaseManager {
     String alphabet = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
     private QueryManager queryManager = new QueryManager();
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("DataBaseData_en");
+
 
     public Connection connect() {
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:9999/studs", "s409753", "DDSokbfxS7zZAxDY");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:9999/studs", resourceBundle.getString("login"), resourceBundle.getString("password"));
             return connection;
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println("Ошибка подключения к базе данных");
