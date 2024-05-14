@@ -38,7 +38,14 @@ public class MainPage {
 
     @FXML
     void initialize() {
-        resources = ResourceBundle.getBundle("org.example.proglab8.l", locale);
+
+        if(locale!=null) {
+            resources = ResourceBundle.getBundle("org.example.proglab8.l", locale);
+        }
+        else {
+            locale = Locale.getDefault();
+            resources = ResourceBundle.getBundle("org.example.proglab8.l", locale);
+        }
 
         UserField.setText(user.getLogin());
         MenuItem commands = new MenuItem(resources.getString("Command_Section"));

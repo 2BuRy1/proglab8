@@ -80,7 +80,7 @@ public class LoginWindow {
                        try {
                            fxmlLoader.load();
                        } catch (IOException e) {
-                           throw new RuntimeException(e);
+                           e.printStackTrace();
                        }
                        Parent root = fxmlLoader.getRoot();
                        Scene scene= new Scene(root);

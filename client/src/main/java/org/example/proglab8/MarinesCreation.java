@@ -29,7 +29,7 @@ public class MarinesCreation {
     ObservableList<Enums.MeleeWeapon> meleeweapon = FXCollections.observableArrayList(Enums.MeleeWeapon.MANREAPER, Enums.MeleeWeapon.CHAIN_AXE, Enums.MeleeWeapon.LIGHTING_CLAW, Enums.MeleeWeapon.POWER_BLADE, Enums.MeleeWeapon.POWER_FIST);
 
     User user = MainPage.user;
-    Client client = new Client("localhost", 2448, 5000, 5);
+    Client client = ApplicationClient.getClient();
     @FXML
     private ResourceBundle resources;
 
